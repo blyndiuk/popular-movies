@@ -44,8 +44,8 @@ public class DetailActivity extends AppCompatActivity {
 
         Picasso.with(this)
                 .load(movie.getImageUrl())
-                .error(R.mipmap.ic_launcher)
-                .placeholder(R.mipmap.ic_launcher)
+                .error(R.drawable.image_placeholder)
+                .placeholder(R.drawable.image_placeholder)
                 .into(posterIv);
 
 

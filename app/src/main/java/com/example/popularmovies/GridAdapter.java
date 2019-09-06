@@ -48,6 +48,7 @@ public class GridAdapter extends RecyclerView.Adapter <GridAdapter.MyViewHolder>
 
                 Intent intent = new Intent(context, DetailActivity.class);
                 intent.putExtra(Movie.MOVIE_INTENT, movie);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });

@@ -2,7 +2,7 @@ package com.example.popularmovies.utils;
 
 import android.util.Log;
 
-import com.example.popularmovies.MainActivity;
+import com.example.popularmovies.Constants;
 import com.example.popularmovies.model.Movie;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,9 +26,9 @@ public class JsonUtils {
             ArrayList<Movie> movies = new ArrayList<>();
             JSONObject root = new JSONObject(json);
 
-            if(MainActivity.PAGES_TOTAL == 0) {
-                MainActivity.PAGES_TOTAL = root.getInt("total_pages");
-                Log.i(LOG_TAG, "Assign PAGES_TOTAL a new value. PAGES_TOTAL = "+ MainActivity.PAGES_TOTAL);
+            if(Constants.PAGES_TOTAL == 0) {
+                Constants.PAGES_TOTAL = root.getInt("total_pages");
+                Log.i(LOG_TAG, "Assign PAGES_TOTAL a new value. PAGES_TOTAL = "+ Constants.PAGES_TOTAL);
             }
 
             JSONArray resultsJson = root.getJSONArray("results");
@@ -51,7 +51,7 @@ public class JsonUtils {
     }
 
 
-    public static Movie parseMovieJson(String json){
+    private static Movie parseMovieJson(String json){
 
         try {
             Movie movie;
