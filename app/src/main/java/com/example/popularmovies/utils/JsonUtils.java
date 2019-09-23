@@ -1,5 +1,7 @@
 package com.example.popularmovies.utils;
-
+/*
+ This class allows to load parse JSON code into instances of Movie class
+ */
 import android.util.Log;
 
 import com.example.popularmovies.Constants;
@@ -42,20 +44,18 @@ public class JsonUtils {
             return movies;
 
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
             Log.e("JsonUtils", "Problem parsing the movies array JSON results", e);
         }
         return null;
     }
 
 
-    private static Movie parseMovieJson(String json){
+    public static Movie parseMovieJson(String json){
 
         try {
             Movie movie;
             JSONObject root = new JSONObject(json);
+            int movieId = root.optInt("id");
             String movieTitle = root.optString("original_title");
             String movieDate = root.optString("release_date");
             String movieOverview = root.optString("overview");
@@ -64,16 +64,63 @@ public class JsonUtils {
 
             String imageUrl = "https://image.tmdb.org/t/p/w185" + moviePosterPath;
 
-            movie = new Movie(movieTitle, movieDate, movieVoteAverage, movieOverview, imageUrl);
+            movie = new Movie(movieId,movieTitle, movieDate, movieVoteAverage, movieOverview, imageUrl);
             return movie;
 
         } catch (JSONException e) {
-            // If an error is thrown when executing any of the above statements in the "try" block,
-            // catch the exception here, so the app doesn't crash. Print a log message
-            // with the message from the exception.
             Log.e("JsonUtils", "Problem parsing the movie JSON results", e);
         }
         return null;
     }
 
+    public static ArrayList<String> parseTrailersJson(String json){
+
+        try {
+            ArrayList<String> trailerUrlsList = new ArrayList<>();
+            JSONObject root = new JSONObject(json);
+            JSONArray resultsJson = root.getJSONArray("results");
+            for(int i = 0; i < resultsJson.length(); i++) {
+
+                JSONObject trailerJson = resultsJson.getJSONObject(i);
+                String youtubeKey = trailerJson.optString("key");
+                String youtubeUrl = "https://www.youtube.com/watch?v=" + youtubeKey;
+                trailerUrlsList.add(youtubeUrl);
+            }
+            return trailerUrlsList;
+
+        } catch (JSONException e) {
+            Log.e("JsonUtils", "Problem parsing the trailer JSON results", e);
+        }
+        return null;
+    }
+
+
+    public static ArrayList<ArrayList<String>> parseReviewsJson(String json){
+
+        try {
+            ArrayList<ArrayList<String>> reviewsList = new ArrayList<>();
+            ArrayList<String> authors = new ArrayList<>();
+            ArrayList<String> contents = new ArrayList<>();
+
+            JSONObject root = new JSONObject(json);
+            JSONArray resultsJson = root.getJSONArray("results");
+
+            for(int i = 0; i < resultsJson.length(); i++) {
+
+                JSONObject reviewJson = resultsJson.getJSONObject(i);
+                String author = reviewJson.optString("author");
+                authors.add(author);
+                String content = reviewJson.getString("content");
+                contents.add(content);
+
+            }
+            reviewsList.add(authors);
+            reviewsList.add(contents);
+            return reviewsList;
+
+        } catch (JSONException e) {
+            Log.e("JsonUtils", "Problem parsing the review JSON results", e);
+        }
+        return null;
+    }
 }

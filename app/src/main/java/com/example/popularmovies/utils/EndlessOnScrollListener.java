@@ -1,5 +1,7 @@
 package com.example.popularmovies.utils;
-
+/*
+ This class allows to endlessly load new movies into the UI
+ */
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,15 +12,16 @@ import android.widget.Toast;
 import com.example.popularmovies.Constants;
 import com.example.popularmovies.GridAdapter;
 import com.example.popularmovies.MainActivity;
-import com.example.popularmovies.MoviesAsyncTask;
 
 public class EndlessOnScrollListener extends RecyclerView.OnScrollListener {
     private static final String LOG_TAG = "OnScrollListener status";
     private RecyclerView recyclerView;
     private Context context;
+    private GridAdapter gridAdapter;
 
-    public EndlessOnScrollListener(RecyclerView recyclerView, Context context) {
+    public EndlessOnScrollListener(RecyclerView recyclerView, GridAdapter gridAdapter, Context context) {
         this.recyclerView = recyclerView;
+        this.gridAdapter = gridAdapter;
         this.context = context;
     }
 
@@ -57,8 +60,7 @@ public class EndlessOnScrollListener extends RecyclerView.OnScrollListener {
 
     private void loadMore() {
         Log.i(LOG_TAG, "START  loadMore");
-
-        new MoviesAsyncTask(context, recyclerView).execute();
+        new MainActivity.MoviesAsyncTask(recyclerView,gridAdapter, context ).execute();
         GridAdapter gridAdapter = (GridAdapter) recyclerView.getAdapter();
         if (gridAdapter != null)
             gridAdapter.notifyDataSetChanged();

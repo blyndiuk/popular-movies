@@ -19,7 +19,13 @@ public class NetworkingUtils {
      * Tag for the log messages
      */
     private static final String LOG_TAG = NetworkingUtils.class.getSimpleName();
-
+    /**
+     * Create a private constructor because no one should ever create a {@link NetworkingUtils} object.
+     * This class is only meant to hold static variables and methods, which can be accessed
+     * directly from the class name NetworkingUtils (and an object instance of NetworkingUtils is not needed).
+     */
+    private NetworkingUtils() {
+    }
     /**
      * Returns new URL object from the given string URL.
      */

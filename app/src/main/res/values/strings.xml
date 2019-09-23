@@ -5,14 +5,20 @@
     <string name="movie_title_placeholder">Harry Potter and the Philosopher\'s Stone</string>
     <string name="release_date_placeholder">(2015)</string>
     <string name="user_score">User score: </string>
-    <string name="user_score_placeholder">7.8</string>
+    <string name="user_score_placeholder">7.8/10</string>
     <string name="overview">Overview</string>
     <string name="overview_placeholder">Harry Potter has lived under the stairs at his aunt and uncle\'s house his whole life. But on his 11th birthday, he learns he\'s a powerful wizard — with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school\'s kindly headmaster, Harry uncovers the truth about his parents\' deaths — and about the villain who\'s to blame.</string>
-    <string name="content_desc_img">image loaded from the internet</string>
-
+    <string name="content_desc_img">Movie poster</string>
+    <string name="reviewer_name_placeholder">Frank Pereira</string>
+    <string name="review_placeholder">Man kind was born on earth, it was never meant to die here.It has been two days since I watched it and I still can\'t get it out of my head. I can safely say that it has been a long LONG time since a movie had this much effect on me after watching it. And the only thing I can think of now is to somehow Re-Watch it again.This movie was surprisingly different from Christopher Nolan\'s recent works because they had been great cinematic entertainment pieces catered to a wider audience with a blockbuster approach, this certainly didn\'t felt like that and hence the polarizing response it got.</string>
     <string name="detail_error_message">Movie details not found</string>
+    <string name="reviews">Reviews</string>
+    <string name="trailers">Trailers</string>
+    <string name="trailer">Trailer</string>
+    <string name="out_of_ten">/10</string>
 
     <string name="by_popularity">Most Popular</string>
     <string name="by_rating">Top Rated</string>
+    <string name="favorite_movies">My Favorite</string>
     <string name="poor_connection">Poor Internet connection</string>
 </resources>

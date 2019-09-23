@@ -7,15 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import com.example.popularmovies.database.FavoriteMovieEntry;
 import com.example.popularmovies.model.Movie;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GridAdapter extends RecyclerView.Adapter <GridAdapter.MyViewHolder> {
 
     private final Context context;
-    private final ArrayList <Movie> movies;
+    private ArrayList <Movie> movies;
 
 
    GridAdapter(Context context, ArrayList <Movie> movies) {
@@ -28,7 +30,6 @@ public class GridAdapter extends RecyclerView.Adapter <GridAdapter.MyViewHolder>
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // inflate the item Layout
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layout, parent, false);
-
         return new MyViewHolder(view);
     }
 
@@ -37,9 +38,11 @@ public class GridAdapter extends RecyclerView.Adapter <GridAdapter.MyViewHolder>
         // set the data in items
         final Movie movie = movies.get(position);
         //use picasso library to populate the view with images
-        Picasso.with(context)
-                .load(movie.getImageUrl())
-                .into(viewHolder.image);
+            Picasso.with(context)
+                    .load(movie.getImageUrl())
+                    .error(R.mipmap.image_placeholder)
+                    .placeholder(R.mipmap.image_placeholder)
+                    .into(viewHolder.image);
 
         // implement setOnClickListener event on item view.
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -66,5 +69,16 @@ public class GridAdapter extends RecyclerView.Adapter <GridAdapter.MyViewHolder>
             super(itemView);
             image = itemView.findViewById(R.id.image);
         }
+    }
+
+    //When data changes, this method updates the list of movies and notifies the adapter to use the new values on it
+    void setMovies(List<FavoriteMovieEntry> favoriteMovieEntries) {
+        movies.clear();
+        for(int i = 0; i < favoriteMovieEntries.size(); i++){
+            FavoriteMovieEntry movieEntry = favoriteMovieEntries.get(i);
+            Movie movie = new Movie(movieEntry.getId(), movieEntry.getTitle(), movieEntry.getDate(), movieEntry.getVoteAvg(), movieEntry.getOverview(), movieEntry.getImageUrl());
+            movies.add(movie);
+        }
+        notifyDataSetChanged();
     }
 }

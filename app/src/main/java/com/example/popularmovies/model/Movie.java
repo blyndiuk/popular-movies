@@ -6,22 +6,15 @@ import android.os.Parcelable;
 public class Movie implements Parcelable {
 
     public final static String MOVIE_INTENT = "movie";
-
-
+    private int id;
     private String title;
     private String date;
     private double voteAvg;
     private String overview;
     private String imageUrl;
 
-    /**
-     * No args constructor for use in serialization
-     */
-    public Movie(){
-
-    }
-
-    public Movie(String title, String date, double voteAvg, String overview, String imageUrl) {
+    public Movie(int id, String title, String date, double voteAvg, String overview, String imageUrl) {
+        this.id = id;
         this.title = title;
         this.date = date;
         this.voteAvg = voteAvg;
@@ -30,6 +23,7 @@ public class Movie implements Parcelable {
     }
 
     private Movie (Parcel in){
+        id = in.readInt();
         title = in.readString();
         date = in.readString();
         voteAvg = in.readDouble();
@@ -45,6 +39,7 @@ public class Movie implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
 
+        dest.writeInt(id);
         dest.writeString(title);
         dest.writeString(date);
         dest.writeDouble(voteAvg);
@@ -61,6 +56,9 @@ public class Movie implements Parcelable {
         public Movie[] newArray(int i) { return new Movie[i];}
     };
 
+    public int getId() {
+        return  id;
+    }
 
     public String getTitle() {
         return title;
@@ -78,6 +76,10 @@ public class Movie implements Parcelable {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setTitle(String title) {

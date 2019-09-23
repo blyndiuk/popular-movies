@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,12 +33,10 @@
 
             <TextView
                 android:id="@+id/tv_release_date"
+                style="@style/customMonospaceStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:padding="@dimen/padding_small"
-                android:text="@string/release_date_placeholder"
-                android:textSize="24sp" />
+                android:text="@string/release_date_placeholder" />
         </LinearLayout>
 
 
@@ -46,51 +45,171 @@
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:adjustViewBounds="true"
-            android:padding="@dimen/padding_small"
             android:contentDescription="@string/content_desc_img"
-            android:src="@drawable/image_placeholder" />
+            android:padding="@dimen/padding_small"
+            android:src="@mipmap/image_placeholder"/>
 
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/user_score_label"
+                style="@style/customMonospaceStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="serif-monospace"
-                android:padding="@dimen/padding_small"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="@string/user_score"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_vote_average"
+                style="@style/customMonospaceStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/padding_small"
+                android:layout_alignTop="@+id/user_score_label"
+                android:layout_alignBottom="@+id/user_score_label"
+                android:layout_marginStart="12dp"
+                android:layout_marginBottom="8dp"
+                android:layout_toEndOf="@+id/user_score_label"
                 android:text="@string/user_score_placeholder"
-                android:textSize="24sp" />
-        </LinearLayout>
+                app:layout_constraintBottom_toBottomOf="@+id/user_score_label"
+                app:layout_constraintStart_toEndOf="@+id/user_score_label"
+                app:layout_constraintTop_toTopOf="@+id/user_score_label"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/iv_star"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_star_border_white_50dp" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/overview_label"
+                style="@style/customMonospaceStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/overview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/light"
+                app:layout_constraintBottom_toBottomOf="@+id/overview_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/overview_label"
+                app:layout_constraintTop_toTopOf="@+id/overview_label" />
+
+            <TextView
+                android:id="@+id/tv_movie_overview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/customSimpleTextStyle"
+                android:text="@string/overview_placeholder"
+                app:layout_constraintTop_toBottomOf="@id/overview_label"
+                app:layout_constraintStart_toStartOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
 
 
-        <TextView
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/trailers_label"
+                style="@style/customMonospaceStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/trailers"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/light"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/trailers_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/trailers_label"
+                app:layout_constraintTop_toTopOf="@+id/trailers_label" />
+
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="serif-monospace"
-            android:padding="@dimen/padding_small"
-            android:text="@string/overview"
-            android:textSize="24sp" />
+            android:id="@+id/rv_trailers">
+        </android.support.v7.widget.RecyclerView>
 
 
-        <TextView
-            android:id="@+id/tv_movie_overview"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
-            android:textSize="20sp"
-            android:text="@string/overview_placeholder" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/customMonospaceStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/light"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:scrollbarThumbVertical="@color/light"
+            android:nestedScrollingEnabled="true">
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_reviews">
+            </android.support.v7.widget.RecyclerView>
+        </ScrollView>
+
 
     </LinearLayout>
 </ScrollView>
