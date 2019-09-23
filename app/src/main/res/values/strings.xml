@@ -21,4 +21,5 @@
     <string name="by_rating">Top Rated</string>
     <string name="favorite_movies">My Favorite</string>
     <string name="poor_connection">Poor Internet connection</string>
+    <string name="content_desc_star">Add or remove from favorite</string>
 </resources>
