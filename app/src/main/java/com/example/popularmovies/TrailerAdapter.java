@@ -48,7 +48,8 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.MyViewHo
                 String url = mUrls.get(position);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                if(intent.resolveActivity(context.getPackageManager()) != null)
+                    context.startActivity(intent);
             }
         });
     }

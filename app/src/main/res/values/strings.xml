@@ -22,4 +22,5 @@
     <string name="favorite_movies">My Favorite</string>
     <string name="poor_connection">Poor Internet connection</string>
     <string name="content_desc_star">Add or remove from favorite</string>
+    <string name="reviews_not_found">No trailers or reviews found due to a problem with Internet connection</string>
 </resources>

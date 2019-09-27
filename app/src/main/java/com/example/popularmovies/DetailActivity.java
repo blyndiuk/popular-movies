@@ -59,8 +59,15 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
         populateUI(movie);
-        new TrailersAsyncTask(movie.getId(), trailersRecyclerView, this).execute();
-        new ReviewsAsyncTask(movie.getId(),reviewRecyclerView, this).execute();
+        if(NetworkingUtils.connectedToTheInternet(this)) {
+            new TrailersAsyncTask(movie.getId(), trailersRecyclerView, this).execute();
+            new ReviewsAsyncTask(movie.getId(), reviewRecyclerView, this).execute();
+        } else {
+            TextView trailer = findViewById(R.id.trailers_label);
+            trailer.setVisibility(View.GONE);
+            TextView review = findViewById(R.id.reviews_label);
+            review.setText(R.string.reviews_not_found);
+        }
 
 
         starIv = findViewById(R.id.iv_star);

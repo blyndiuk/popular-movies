@@ -24,7 +24,7 @@ public class MainViewModel extends AndroidViewModel {
         tasks = database.moviesDao().loadAllTasks();
     }
 
-    public LiveData<List<FavoriteMovieEntry>> getTasks() {
+    LiveData<List<FavoriteMovieEntry>> getTasks() {
         return tasks;
     }
 }

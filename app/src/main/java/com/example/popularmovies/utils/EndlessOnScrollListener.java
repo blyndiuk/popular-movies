@@ -59,6 +59,7 @@ public class EndlessOnScrollListener extends RecyclerView.OnScrollListener {
     }
 
     private void loadMore() {
+        Log.i("Log", MainActivity.sortingCriteria);
         Log.i(LOG_TAG, "START  loadMore");
         new MainActivity.MoviesAsyncTask(recyclerView,gridAdapter, context ).execute();
         GridAdapter gridAdapter = (GridAdapter) recyclerView.getAdapter();
